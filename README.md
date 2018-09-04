@@ -123,5 +123,9 @@
 <h1>blog(个人博客)</h1>
 <H4>图片预览</ h的>
 <img src="http://www.cjarvan.cn/Cimages/blog-web.png"><hr/>
+<img src="http://www.cjarvan.cn/Cimages/blog-web1.png"><hr/>
 <img src="http://www.cjarvan.cn/Cimages/blog-manage1.png"><hr/>
-<img src="http://www.cjarvan.cn/Cimages/blog-manage2.png">
+<img src="http://www.cjarvan.cn/Cimages/blog-manage2.png"><hr/>
+<img src="http://www.cjarvan.cn/Cimages/blog-code.png"><hr/>
+<img src="http://www.cjarvan.cn/Cimages/comment.png">
+
