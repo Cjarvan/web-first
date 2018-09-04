@@ -1,0 +1,34 @@
+{% extends 'manage.html' %}
+{%block main%}
+<div class="contentContain">
+<h3>修改内容</h3>
+<form method="post">
+  <div class="form-group">
+   	<label for="categoryId">分类类别:</label>
+	<select name="category" id="categoryId">
+		{% for addcates in addcate%}
+		{% if addcates.id.toString() == cate.category._id.toString()%}
+		<option value="{{addcates.id}}" selected>	{{addcates.category}}</option>
+		{%else%}
+		<option value="{{addcates.id}}">	
+		{{addcates.category}}</option>
+		{%endif%}
+		{%endfor%}
+	</select>
+	</div>
+	<div class="form-group">
+	<label for="categoryTitle">分类标题:</label>
+	<input type="text" class="form-control" name="title" id="categoryTitle" value="{{cate.title}}">
+	</div>
+	<div class="form-group">
+	<label for="categoryDescribe">分类描述:</label>
+	<input type="text" class="form-control" name="describe" id="categoryDescribe" value="{{cate.describe}}">
+	</div>
+	<div class="form-group">
+	<label for="categoryContent">分类内容:</label>
+	<textarea  class="form-control" rows="10" name="content" id="categoryContent">{{cate.content}}</textarea>
+	</div>
+	 <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+{%endblock%}

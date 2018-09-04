@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link rel="stylesheet" href="../../../public/css/bootstrap.min.css" >
+</head>
+<style>
+    nav{
+    text-align:center;
+  }
+  .pagination{
+    margin:0 auto;
+  }
+  .all-contain{
+    width:960px;
+    margin: 0 auto;
+  }
+</style>
+<body>
+<div class="admin">
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/admin">后台管理</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/admin/user" >用户管理</a></li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类管理 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin/classification">分类首页</a></li>
+            <li><a href="/admin/category/add">添加分类</a></li>
+          </ul>
+      </li>
+      <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">内容首页 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin/classification/content">内容首页</a></li>
+            <li><a href="/admin/classification/add">添加内容</a></li>
+          </ul>
+        </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">返回用户界面</a></li>
+  </ul>
+    </div>
+  </div>
+</nav>
+</div>
+<div class="all-contain">
+	{%block main %}
+    <div class="jumbotron">
+    <div class="container">
+      <h1>欢迎来到后台管理!</h1>
+      <p>...</p>
+    </div>  
+  </div>
+	{%endblock%}
+</div>
+</body>
+<script src="../../../public/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+  $('.dropdown').find('a').on('click',function(){
+      $(this).parent().toggleClass('open').siblings().removeClass('open')
+  })
+</script>
+</html>

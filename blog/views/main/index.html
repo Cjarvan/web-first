@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<link rel="stylesheet" href="../public/css/bootstrap.min.css" >
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/js/jquery.min.js"></script> -->
+</head>
+<style type="text/css">
+ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,input,form,a,p,textarea,pre
+   {
+    margin:0;
+    padding:0;
+   }
+   form, li, ul ,button{
+    list-style: none;
+    border: none;
+  }
+  input{
+    outline:medium;
+    width:150px;
+  }
+   a{
+    text-decoration:none;
+    display:block;
+   }
+   img{
+    border:none;
+   }
+   a{
+    color:#333;
+   }
+   .clearfix:after{
+    content:"";
+    height:0;
+    clear:both;
+    visibility:hidden;
+    display:block;
+   }
+   .f_l{
+    float:left;
+   }
+   .f_r{
+    float:right;
+   }
+	.allcontent{
+		width:100%;
+		background-color:#ccc;
+		color:#000;
+	}
+	.contain{
+		width:780px;
+		min-height:280px;
+		margin:0 auto;
+	}
+	.menu{
+		margin-bottom:10px;
+	/*	text-align:center;*/
+	}
+	.menu ul{
+		max-width:750px;
+		margin:0 auto;
+	}
+	.contain .content-l .content-one{
+		background-color:#fff;
+		margin-top:20px;
+	}
+	.contain .content-l .content-one h2{
+		text-align:center;
+		padding-top:20px;
+	}
+	.contain .content-l .content-one div{
+		text-align:center;
+		margin:8px 0;
+	}
+	.contain .content-l .content-one div p{
+		display:inline-block;	
+	}
+	.contain .content-l .content-one h4{
+		margin-left:10px;
+	}
+	.contain .content-l .content-one .read{
+		/*width:60px;
+		height:24px;*/
+		/*background-color:orange;
+*/		/*padding:6px;*/
+		font-size:12px;
+		padding-bottom:20px;
+	}
+	.contain .content-l .content-one .read a{
+		background-color:orange;
+		width:60px;
+		height:24px;
+		line-height:24px;
+		color:#fff;
+		margin-left:10px;
+		/*margin: 18px 0 20px 10px;*/
+	}
+	/*.user-header{
+		padding : 20px 0 0 10px;
+	}*/
+	p a{
+		color:orange;
+	}
+	.login{
+		padding:10px;
+	}
+	.registered{
+		padding:10px;
+		display:none;
+	}
+	.clickchange a{
+		display:inline-block;
+		color:orange;
+	}
+	.clickchange{
+		margin-top:10px;
+		text-align:right;
+	}
+	.contain .content-r div{
+		margin-top:20px;
+		background-color:#fff;
+	}
+	.contain .content-r .information div{
+		padding:15px 20px;
+	}
+	.contain .content-r .information div strong{
+		padding: 0px 8px 2px 0px;
+		border-bottom:1px solid orange;
+	}
+	.coldark{
+		display:inline-block;
+		width:60px;
+		line-height:28px;
+		text-align:right;
+	}
+	.information p {
+		margin-top:10px;
+	}
+	.enterManage a{
+		margin-left:10px;
+		color:orange;
+	}
+	nav{
+		text-align:center;
+	}
+	.pagination{
+		margin:0 auto;
+	}
+	.user-success{
+		color:#3c763d;
+		background-color:#d6e9c6;
+	}
+	.user-error{
+		color:#a94442;
+		background-color:#f2dede;
+	}
+	.prompt{
+		margin-top:10px;
+	}
+	.jumbotron{
+		width:100%;
+		height:240px;
+		background:url('../../public/images/logo.png') no-repeat;
+		background-size:cover;
+	}
+</style>
+<body>
+	<div class="jumbotron">
+		<div class="container">
+		  <h1>Welcome to my blog!</h1>
+		  <p>...</p>
+		</div>  
+	</div>
+	<!-- class="active" nav-justified-->
+	<div class="menu">
+	<ul class="menu nav nav-tabs ">
+		{%if categorys==''%}
+		  <li class="active"><a href='/' >首页</a></li>
+		{%else%}
+		<li><a href='/' >首页</a></li>
+		{%endif%}
+		{% for cate in category%}
+			{%if categorys==cate.id%}
+		  <li role="presentation" class="active"><a href="/?category={{cate.id}}">
+		  {{cate.category}}</a></li>
+		  {%else%}
+		   <li role="presentation" ><a href="/?category={{cate.id}}">
+		  {{cate.category}}</a></li>
+		  {%endif%}
+		  {%endfor%}
+		  {%if userinfo.isAdmin%}
+		   <li style="float:right"><a href='/admin/' >进入管理</a></li>
+		  {%else%}
+		  <li style="float:right" class='disabled' title='您不是管理员'><a href="#">进入管理</a></li>
+		  {%endif%}
+	</ul>
+</div>
+<div class="allcontent clearfix">
+	<div class="contain">
+		<div class="row">
+			<div class="content-l col-sm-8">
+				{%block content%}
+				{% for cates in cate%}
+				<div class="content-one">
+					<h2>{{cates.title}}</h2>
+					<div class="clearfix">
+						<p>时间: <span>{{cates.addTime|date('Y年m月d日 H:i:s')}}</span></p>
+						<p>阅读量: <span>{{cates.read}}</span></p>
+						<p>评论数: <span>{{cates.comments.length}}</span></p>
+					</div>
+					<h4>{{cates.describe}}</h4>
+					<div class="read"><a href="/views?id={{cates._id.toString()}}">阅读全文</a></div>
+				</div>
+				{%endfor%}
+				{% include '../pageLayou.html'%}
+	{%endblock%}	
+	</div>			
+			<div class="content-r col-sm-4">
+				{% if userinfo._id %}
+				<div class="information" >
+					<div>
+					<strong class="user-header">用户信息</strong>
+					<p class="username"></p>
+					{% if userinfo.isAdmin %}
+					<p>你好！管理员！！</p>
+					<p class="enterManage clearfix"><span class="f_l">{{userinfo.username}}</span><a href="/admin/" class="f_l">进入管理</a></p>
+					{% else %}
+					<p >{{userinfo.username}},欢迎!</p>
+					{% endif %}
+					<p><a href="#" class='logout'>退出</a></p>
+					</div>
+				</div>
+				{% else %}
+				<div class="registered" >
+					<strong class="user-header">注册</strong>
+					<div class="line"><span class="coldark">用户名:</span><input name="username" type="text" ></div>
+					<div class="line"><span class="coldark">密码:</span><input name="password" type="password" ></div>
+					<div class="line"><span class="coldark">确认密码:</span><input name="repassword" type="password" ></div>
+					<div class="line"><span class="coldark"></span><button>注册</button></div>
+					<p class="clickchange registered-click">已有账号? <a href="#">马上登陆</a></p>
+					<p class="prompt"></p>
+				</div>
+				<div class="login">
+					<strong class="user-header">登陆</strong>
+					<div class="line"><span class="coldark">用户名:</span><input type="text" name="username"></div>
+					<div class="line"><span class="coldark">密码:</span><input type="password" name="password"></div>
+					<div class="line"><span class="coldark"></span><button>登陆</button></div>
+					<p class="clickchange login-click">还没注册? <a href="#">马上注册</a></p>
+					<p class="prompt"></p>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+<script src="../public/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$('.registered-click').find('a').on('click',function(){
+		$('.login').show()
+		$('.registered').hide()
+	})
+	$('.login-click').find('a').on('click',function(){
+		$('.registered').show()
+		$('.login').hide()
+	})
+	$('.registered').find('button').on('click',function(){
+		$.ajax({
+			type:'post',
+			url:'/api/user/resgiter',
+			data:{
+				username:$('.registered').find('[name="username"]').val(),
+				password:$('.registered').find('[name="password"]').val(),
+				repassword:$('.registered').find('[name="repassword"]').val()
+			},
+			dataType:'json',
+			success:function(result){
+				if(!result.code){
+					$('.registered').find('.prompt').addClass('user-success').html(result.message)
+					setTimeout(function(){
+					$('.login').show()
+					$('.registered').hide()
+					},3000)
+				}else{
+					$('.registered').find('.prompt').addClass('user-error').html(result.message)
+				}
+			}
+		})
+	})
+	$('.login').find('button').on('click',function(){
+		$.ajax({
+			type:'post',
+			url:'/api/user/login',
+			data:{
+				username:$('.login').find('[name="username"]').val(),
+				password:$('.login').find('[name="password"]').val(),
+			},
+			dataType:'json',
+			success:function(result){
+				if(!result.code){
+					window.location.reload()
+				}else{
+					$('.login').find('.prompt').addClass('user-error').html(result.message)
+				}
+				
+			}
+		})
+	})
+	$('.information').find('.logout').on('click',function(){
+		$.ajax({
+			url:'/api/user/logout',
+			success:function(result){
+				if(!result.code){
+					window.location.reload()
+				}
+			}
+		})
+	})
+	$('enterManage').find('a').on('click',function(){
+		$.ajax({
+			url:'/admin/',
+			success:function(result){
+				// if(!result.code){
+				// 	window.location.reload()
+				// }
+			}
+		})
+	})
+</script>
+</html>

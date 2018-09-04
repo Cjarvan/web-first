@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拖拽排序插件</title>
+<link rel="stylesheet" href="../css/base.css" />
+<style type="text/css">
+    img{
+    	width:100px;
+    	height:80px;
+    	display:block;
+    }
+    .dragsort ul{
+        list-style: none;
+        margin:0;
+        padding:0;
+        width:300px;
+        height:240px;
+        position: relative;
+    }
+    .dragsort ul li {
+	   position:absolute;
+    }
+</style>
+</head>
+    <body>
+        <h2>效果预览</h2>
+        <div class="dragsort">
+            <ul>
+                <li><img src="../Cimages/002.jpg"></li>
+                <li><img src="../Cimages/003.jpg"></li>
+                <li><img src="../Cimages/004.jpg"></li>
+                <li><img src="../Cimages/005.jpg"></li>
+                <li><img src="../Cimages/006.jpg"></li>
+                <li><img src="../Cimages/007.jpg"></li>
+                <li><img src="../Cimages/004.jpg"></li>
+                <li><img src="../Cimages/005.jpg"></li>
+                <li><img src="../Cimages/005.jpg"></li>
+            </ul>
+        </div>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="./drag.js"></script>
+        <script type="text/javascript">
+            $(".dragsort").drag({
+                clearance:10, //间隔
+                animateSpeed:300,
+            });
+        </script>
+    </body>
+</html>

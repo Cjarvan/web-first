@@ -1,0 +1,22 @@
+{% extends 'manage.html' %}
+{%block main%}
+<div class="userContain">
+<h3>分类首页</h3> 
+<table class='table table-hover'>
+	<tr>
+		<th>ID</th>
+		<th>分类名</th>
+		<th></th>
+	</tr>
+	{% for cates in cate%}
+	<tr>
+		<td>{{cates._id.toString()}}</td>
+		<td>{{cates.category}}</td>
+		<td><a href="/admin/classification/edit?id={{cates._id.toString()}}">修改</a>|
+		<a href="/admin/classification/delete?id={{cates._id.toString()}}">删除</a></td>
+	</tr>
+	{%endfor%}
+</table>
+      {% include '../pageLayou.html'%}
+</div>
+{%endblock%}

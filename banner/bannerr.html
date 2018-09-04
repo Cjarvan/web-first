@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>无缝不间断向左滚动</title>
+	<link rel="stylesheet" href="../css/base.css" />
+	<style type="text/css">
+		.scroll li{height: 320px; width: 400px; border:1px solid #ddd;  text-align: center;}
+		.scroll li img{
+			height: 320px; width: 400px;
+		}
+		/*.left_btn{	
+			display:none;
+		width:60px;
+		height:60px;
+		position:absolute;
+		background:url(../Cimages/btn.gif) no-repeat 0 0;
+		top:50%;
+		transform:translateY(-50%);
+		left: 10px;
+		z-index:4;
+		opacity:1;
+		}
+		.right_btn{
+			display:none;
+		width:60px;
+		height:60px;
+		position:absolute;
+		background:url(../Cimages/btn.gif) no-repeat 0 -60px;
+		top:50%;
+		transform:translateY(-50%);
+		right:10px;
+		z-index:4;
+		opacity:1;
+		}
+		.mengl	{
+			display:none;
+		position:absolute;
+		left:0;
+		top:0;
+		width:200px;
+		height:320px;
+		z-index:3;
+		}
+		.mengr{
+			display:none;
+		position:absolute;
+		right:0;
+		top:0;
+		width:200px;
+		height:320px;
+		z-index:3;
+		}*/
+	</style>
+
+</head>
+<body>
+	<a  href="./banner.html" >带缩略图轮番图</a>
+	<a  href="./bannerno.html" >未带缩略图轮番图</a>
+	<a  href="./bannerl.html" >无缝向左</a>
+	<a  href="./bannerr.html" >无缝向右</a>
+	<a  href="./bannert.html" >无缝向上</a>
+	<a  href="./bannerb.html" >无缝向下</a>
+	<div class="scrollAll">
+		<div class="scroll clearfix">
+			<!-- <div class="btn left_btn"></div> -->
+			<ul class="turn_1">
+			<li style="z-index:1"><img src="../Cimages/002.jpg" alt="图1" ></li>
+			<li ><img src="../Cimages/003.jpg" alt="图1" ></li>
+			<li><img src="../Cimages/004.jpg" alt="图1" ></li>
+			<li><img src="../Cimages/005.jpg" alt="图1" ></li>
+			<li><img src="../Cimages/006.jpg" alt="图1"></li>
+			<li><img src="../Cimages/007.jpg" alt="图1" ></li>
+			</ul>
+			<ul class="turn_2"></ul>
+			<!-- <div class="btn right_btn"></div> -->
+			<!-- <div class='mengl'></div>
+			<div class='mengr'></div> -->
+		</div>
+	</div>
+	 <script src="../js/jquery-3.3.1.min.js"></script>
+	 <script src="./banner.js"></script>
+	<script type="text/javascript">	
+		$(function(){
+			$('.scroll').gundong({'direction':'right'})
+		})
+	</script>
+</body>
+</html>

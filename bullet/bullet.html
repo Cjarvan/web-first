@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/base.css" />
+  <title>jQ 弹幕插件</title>
+  <style>
+    #bulletarea {
+      position: relative;
+      border:1px solid #222;
+      width:800px;
+      height: 445px;
+    }
+  </style>
+</head>
+<body >
+<div id="bulletarea">
+  <div id="bullet" >
+  </div>
+</div>
+<div class="ctr" >
+  <button type="button" class='switch'>弹幕开始/暂停</button>
+  显示弹幕:<input type='checkbox' class="showBullet"  id='ishide' value='is' checked='checked' >
+  发弹幕:
+  <select  name="color" id="color" >
+    <option value="red">红色</option>
+    <option value="green">绿色</option>
+    <option value="blue">蓝色</option>
+    <option value="yellow">黄色</option>
+  </select>
+  <select name="size" id="text_size" >
+    <option value="1">大文字</option>
+    <option value="0">小文字</option>
+  </select>
+  <select name="position" id="position"   >
+    <option value="0">滚动</option>
+    <option value="1">顶端</option>
+  </select>
+  <input type="textarea" class="bulletText" max=300 />
+  <button type="button" class="bulletBtn" >发送</button>
+</div>
+ <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="./bullet.js"></script>
+<script>
+  $("#bulletarea").bullet({
+  });
+</script>
+</body>
+</html>

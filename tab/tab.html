@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQ Tab插件</title>
+  <link rel="stylesheet" href="../css/base.css" />
+  <style >
+    .tab{ width: 500px; margin:0 auto;}*/
+    .tab-nav { overflow: hidden;}
+    .tab-nav li{ float:left; padding: 0 30px; cursor: pointer;line-height: 30px; background-color: #fafafa;}
+    .tab-nav li.active{ background-color: #CCC;}
+    .con{  border:1px solid #CCC;}
+    .tab-content{ padding: 10px; }
+    .tab-content .tab-item{ display: none;}
+    .tab-content .active{ display: block;}
+  </style>
+</head>
+<body>
+  <div class="js-tab tab">
+      <ul class="tab-nav">
+        <li class="active">html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>vue</li>
+      </ul>
+      <div class="con">
+        <div class="tab-content clearfix">
+          <div class="tab-item active"><p>html</p><p>html</p><p>html</p></div>
+          <div class="tab-item">css</div>
+          <div class="tab-item">javascript</div>
+          <div class="tab-item">vue</div>
+      </div>
+    </div>
+  </div>
+ <script src="../js/jquery-3.3.1.min.js"></script>
+<script src="./tab.js"></script>
+<script>
+  $(function(){
+    $(".js-tab").tab();
+  })
+</script>
+</body>
+</html>

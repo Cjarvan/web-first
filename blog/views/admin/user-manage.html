@@ -1,0 +1,32 @@
+{% extends 'manage.html' %}
+{%block main%}
+ <style >
+   .userContain{
+    width:980px;
+    margin:0 auto;
+   }
+   .userContain h3{
+    margin-bottom:20px;
+   }
+ </style>
+ <div class="userContain">
+<h3>用户信息</h3> 
+<table class='table table-hover'>
+	<tr>
+		<th>ID</th>
+		<th>用户名</th>
+		<th>密码</th>
+		<th>是否为管理者</th>
+	</tr>
+	{% for users in user %}
+	<tr>
+		<td>{{users._id.toString()}}</td>
+		<td>{{users.username}}</td>
+		<td>{{users.password}}</td>
+		<td>{{users.isAdmin}}</td>
+	</tr>
+	{%endfor%}
+</table>
+	{% include '../pageLayou.html'%}
+</div>
+{%endblock%}

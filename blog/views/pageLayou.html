@@ -1,0 +1,15 @@
+<nav aria-label="...">
+	  <ul class="pager">
+	  	{%if page==1%}
+	    <li class="previous disabled" title="已经没有上一页"><a href="javascript:;"><span aria-hidden="true">&larr;</span> Older</a></li>
+	    {%else%}
+	     <li class="previous"><a href="{{urlpre}}"><span aria-hidden="true">&larr;</span> Older</a></li>
+	    {%endif%}
+	   	<li style="text-align:center">{{page}}/{{pages}}</li>
+	   	{%if page==pages%}
+	    <li class="next disabled" title="已经没有下一页"><a href="javascript:;">Newer <span aria-hidden="true">&rarr;</span></a></li>
+	    {%else%}
+	     <li class="next"><a href="{{urlnext}}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+	    {%endif%}
+	  </ul>
+</nav>	

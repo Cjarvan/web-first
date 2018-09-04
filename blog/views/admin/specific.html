@@ -1,0 +1,14 @@
+{% extends 'manage.html'%}
+{%block main%}
+<style>
+	.specific{
+		width:760px;
+		margin:0 auto;
+	}
+</style>
+	<div class="specific">
+
+	<h3>{{specific.title}}的详细内容</h3>
+	<pre>{{specific.content}}</pre>
+	</div>
+{%endblock%}

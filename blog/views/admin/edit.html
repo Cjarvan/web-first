@@ -1,0 +1,19 @@
+{% extends 'manage.html' %}
+{%block main%}
+<style>
+	.categoryContain{
+		width:750px;
+		margin:0 auto;
+	}
+</style>
+<div class="categoryContain">
+<h3>分类修改</h3>
+<form method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">分类类别:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="category" value="{{category.category}}">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+{%endblock%}

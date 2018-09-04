@@ -1,0 +1,180 @@
+{% extends 'index.html' %}
+{% block content%}
+<style>
+   pre{
+    margin:20px 0;
+
+   }
+	.indexContent{
+    /*margin:20px 0;*/
+    background-color:#fff;
+    color:#000;
+    min-height:360px;
+    padding:10px;
+  }
+  .comments .commentsHeader span{
+    float:right;
+  }
+  .comments button{
+    float:right;
+    margin-top:10px;
+  }
+  .comments .cm-content{
+     margin-top:60px;
+     background-color:#fff;
+     overflow:hidden;
+     padding:10px;
+  }
+ .comments .commentContent {
+     /*width:100px; */
+     margin-top:10px;
+ }
+ .comments .commentContent .userComment{
+  margin:5px 20px; 
+ }
+ nav{
+    text-align:center;
+  }
+  .pagination{
+    margin:0 auto;
+  }
+  .reply,.delete{
+    display:block;
+  }
+  .managecomment{
+    border-bottom:1px solid #ccc;
+    margin-bottom:10px;
+  }
+</style> 
+  <pre style="white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;">
+    <h3 style="text-align:center">{{content.title}}</h3>
+  	 <div class="indexContent">{{content.content}}</div>
+  </pre> 
+  
+  <div class="comments">
+  	<p class="commentsHeader">评论 <span>一共有<em class="comment-num">0</em>条评论</span></p>
+  	{% if userinfo._id %}
+	<div>
+		<textarea class="content form-control" row="3"></textarea>
+    <input type="hidden" class="hiddenname" value="{{userinfo.username}}">
+		<input type="hidden" class="hiddens" value="{{content.id}}">
+		<button class="submit">submit</button>
+	</div>   
+	{%else%}
+	<p>你还未登陆，请登陆！</p>	
+	{%endif%}
+	<div class="cm-content">
+	</div> 
+  <nav aria-label="...">
+    <ul class="pager">
+       <li class="previous previous-n"><a href="javascript:;"><span aria-hidden="true">&larr;</span> Older</a></li>
+       <li class="middle-page" style="text-align:center"></li>
+       <li class="next next-n"><a href="javascript:;">Newer <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>  
+  </div>
+  <script src="../public/js/jquery-3.3.1.min.js"></script>
+  <script >
+  	var prepage = 6;
+  	var page = 1;
+  	var pages = 0;
+  	var comments = [];  
+    var username = $('.hiddenname').val();	
+    $('.managecomment .delete').on('click',function(){
+      $.ajax({
+          type:'get',
+          url:'api/delete',
+          data:{
+            contentid:$('.hiddens').val(),
+          },
+          success:function(responseDate){
+
+          }
+    })	
+})
+  	$('.submit').on('click',function(){
+  			$.ajax({
+  				type:'post',
+  				url:'api/comments',
+  				data:{
+  					contentid:$('.hiddens').val(),
+  					content:$('.content').val(),
+  				},
+  				success:function(responseDate){
+            if($('.content').val()==''){
+              return
+            }
+  					$('.content').val('')
+  				comments =responseDate.data.comments.reverse()
+  					showcomments()
+  				}
+  			})
+  		})
+  		$.ajax({
+  				type:'get',
+  				url:'api/comment',
+  				data:{
+  					contentid:$('.hiddens').val(),
+  				},
+  				success:function(responseDate){
+  					$('.content').val('')
+  					comments =responseDate.data.reverse()
+            console.log(responseDate)
+  					showcomments()
+  				}
+  			})
+  		function showcomments(){
+        $('.comment-num').html(comments.length)
+  			var html=''
+  			pages = Math.ceil(comments.length/prepage);
+  			var start = Math.max(0,(page-1)*prepage)
+  			var end = Math.min(start + prepage,comments.length)
+        $('.middle-page').html(page+'/'+pages)
+        if(page==1){
+          $('.previous-n').addClass('disabled')
+        }else{
+          $('.previous-n').removeClass('disabled')
+        }
+        if(page==pages){
+          $('.next-n').addClass('disabled')
+        }else{
+          $('.next-n').removeClass('disabled')
+        }
+  			for(var i = start; i <end ; i++){
+          console.log(comments[i].username+'  :'+username)
+          if(comments[i].username==username){
+  				html +=`<div class="commentContent"><p>${comments[i].username}<span style='float:right'>
+          ${changeDate(comments[i].postTime)}</span></p>
+                  <p class="userComment ">${comments[i].content}</p>
+                  <p class="managecomment clearfix"><a class='f_r delete'>删除</a></p>
+                  </div>`
+                }else{
+                  html +=`<div class="commentContent "><p>${comments[i].username}<span style='float:right'>
+          ${changeDate(comments[i].postTime)}</span></p>
+                  <p class="userComment">${comments[i].content}</p>
+                  <p class="managecomment clearfix"><a class='f_r reply'>回复</a></p>
+                  </div>`
+                }
+  			}
+  			$('.cm-content').html(html)
+  		}
+      function changeDate(dateData){
+        var date1 = new Date(dateData)
+        return date1.getFullYear()+'年'+(date1.getMonth()+1)+'月'+date1.getDate()+'日'+date1.getHours()+':'+date1.getMinutes()+':'+date1.getSeconds();
+      }
+  		$('.previous-n').on('click',function(){
+  			page--
+  			if(page<=1){
+  				page = 1
+  			}
+  			showcomments()
+  		})
+  		$('.next-n').on('click',function(){
+  			page++
+  			if(page>= pages){
+  				page = pages
+  			}
+  			showcomments()
+  		})
+  </script>
+{%endblock%}

@@ -1,0 +1,36 @@
+{% extends 'manage.html' %}
+{%block main%}
+<style >
+	.contentContain{
+		width:750px;
+		margin:0 auto;
+	}
+</style>
+<div class="contentContain">
+<h3>添加内容</h3>
+<form method="post">
+  <div class="form-group">
+   	<label for="categoryId">分类类别:</label>
+	<select name="category" id="categoryId">
+		{% for addcates in addcate%}
+		<option value="{{addcates.id}}">{{addcates.category}}</option>
+		{%endfor%}
+	</select>
+	</div>
+	<div class="form-group">
+	<label for="categoryTitle">分类标题:</label>
+	<input type="text" class="form-control" name="title" id="categoryTitle">
+	</div>
+	<div class="form-group">
+	<label for="categoryDescribe">分类描述:</label>
+	<input type="text" class="form-control" name="describe" id="categoryDescribe">
+	</div>
+	<div class="form-group">
+	<label for="categoryContent">分类内容:</label>
+	<textarea  class="form-control" rows="10" name="content" id="categoryContent"></textarea>
+	</div>
+	<p style="color:#a94442;background-color:#f2dede;">{{reqContent}}</p>
+	 <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+{%endblock%}
