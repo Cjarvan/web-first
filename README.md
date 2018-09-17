@@ -1,4 +1,22 @@
 <h1>jQ插件</h1>
+<h4>accordion(手风琴)</h4>
+<p>使用方式</p>
+<pre>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	 <script src="./accordion.js"></script>
+	<script type="text/javascript">	
+		$(function(){
+			$('.contain').accordion()
+		})
+	</script>
+	参数解析
+	imgheight:360,  //图片的高度
+    imgwidth:500,	//图片的宽度
+    chooseindex:0,	//默认哪张图片显示
+    liwidth:100, 	//外层li的宽度
+</pre>
+<a href="http://www.cjarvan.cn/accordion/accordion.html">效果预览</a>
+<hr/>
 <h4>banner turn(无缝滚动及轮番图)</h4>
 <p>使用方式</p>
 <pre>
